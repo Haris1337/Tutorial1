@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Post
 
+#Prints the 10 first objects in the list
 def post_list(request):
 	posts = Post.objects.all()[:10]
 
@@ -11,6 +12,7 @@ def post_list(request):
 	return render(request, 'blog/base2.html', context)
 
 
+#adds a new object to the list using title, author and body
 def add(request):
 	if(request.method == 'POST'):
 		title = request.POST['title']
