@@ -1,7 +1,7 @@
 {% load staticfiles %}
 {% include 'partials/header.html' %}
 <ul>
-	{% for post in post %}
+	{% for post in posts %}
 	<li>{{post.title}}: {{post.author}} {{post.body}}</li>
 	{% endfor %}
 </ul>

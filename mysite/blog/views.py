@@ -22,7 +22,7 @@ def add(request):
 		post = Post(title=title, author=author, body=body)
 		post.save()
 
-		return redirect('/posts')
+		return redirect('/post')
 	else:
 		return render(request, 'blog/add.html')
 
