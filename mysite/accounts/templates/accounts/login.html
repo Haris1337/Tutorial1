@@ -1,0 +1,10 @@
+{% include 'partials/header.html' %}
+
+<h1>Login</h1>
+	<form class= "site-form"action="/accounts/login/"method="post">
+	{% csrf_token %}
+	{{ form }}
+	<input type="submit"value="Login">
+	</form>
+
+{% include 'partials/footer.html' %}
