@@ -1,3 +1,4 @@
+{% load staticfiles%}
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,5 +9,16 @@
 <header>
 <h1>Postlist</h1>
 <a href="/blog/add">Add Post</a>
+<nav>
+	<ul>
+		<li>
+			<form class="logout-link" action="accounts/logout/" method="post">
+				{% csrf_token %}
+				<button type="submit">Logout</button>
+			</form>
+		</li>
+	</ul>
+</nav>
 <hr>
+
 </header>

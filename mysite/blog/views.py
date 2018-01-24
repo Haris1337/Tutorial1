@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .models import Post
+from django.contrib.auth.decorators import login_required
 
 #Prints the 10 first objects in the list
 def post_list(request):
@@ -14,6 +15,7 @@ def post_list(request):
 
 
 #adds a new object to the list using title, author and body
+@login_required(login_url="/accounts/login")
 def add(request):
 
 	if(request.method == 'POST'):
