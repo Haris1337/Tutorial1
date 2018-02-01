@@ -36,4 +36,8 @@ def add(request):
 
 		return render(request, 'blog/add.html', user)
 
+def blog_detail(request, title):
+	blog = Post.objects.get(title=title)
+	return render(request, 'blog/blog_detail.html', {'blog':blog})	
+
 

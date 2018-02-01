@@ -1,0 +1,15 @@
+31.1.2018
+- Template tags are used to write python code in html files. {% %} = Gives no output and are used for loops and such while {{ }} = output of data.
+
+- accounts:login = app_name:URL ?
+
+- To show different content on templates, you can use the is_authenticated method. 		
+{% if user.is_authenticated %} -->show this html code {% else % } --> show this html code (<li>)
+
+01.2.2018
+- Instead of having a dropdown, we can make an instance that connects the logged in author to the instance. 
+instance = form.save(commit=False)
+instance.author = request.user
+instance.save() (Something like this).'
+
+Named urls 	url(r'^logout/$', views.logout_view, name="logout") <-- logout is the name of this url.

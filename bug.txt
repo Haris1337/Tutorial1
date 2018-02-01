@@ -2,3 +2,6 @@
 
 2.When you login manually you should be redirected to the "post". If you log in via the add post
 you should return to the "add" url
+
+01.2.2018
+- Cant get the title to be a link to a new template of itself. new functions def blog_detail.
