@@ -1,11 +1,8 @@
 from django.contrib.auth.models import User
 from django import forms
+from . import models
 
-#class UserForm(forms.ModelForm):
-	#specify passwordfield
-#	password = forms.CharField(widget=forms.PasswordInput)
-	#Information about the class
+#class CommentForm(forms.ModelForm):
 #	class Meta:
-#	model = User
-#	fields = ['username', 'email', 'password']
-
+#		model = models.Comments
+#		fields = ['comment_text', 'time_of_comment']

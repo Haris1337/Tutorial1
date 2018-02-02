@@ -10,6 +10,21 @@
 - Instead of having a dropdown, we can make an instance that connects the logged in author to the instance. 
 instance = form.save(commit=False)
 instance.author = request.user
-instance.save() (Something like this).'
+instance.save() (Something like this).
 
 Named urls 	url(r'^logout/$', views.logout_view, name="logout") <-- logout is the name of this url.
+
+02.2.2018 Github
+- Git is the tool while github is the hosting service for sharing code, publishing service and social networking for programmers.
+
+- version control: keep snapshots of every point in time in the projects history.
+- branch: a branch is a parallel version of a repo, contained within the repo but does not affect the masterbranch. 
+- fork: clone someones work to expand or something.
+- commit: snapshot of your repo at that time, recording changes to the repo. 
+- use the terminal > GUI.
+- Use branching and pull requests.
+1. git branch "name of branch"
+2. git checkout "name of branch"
+3. make new file
+4. git add . / git commit -m "message of changes" / git push origin "branchname" / git checkout master / git merge / git push.
+

@@ -2,11 +2,11 @@
 {% include 'partials/header.html' %}
 
 <ul>
+
 	{% for post in posts %}
 	<li>
-		<a href="#">Title: {{post.title}}</a>
-		
-	<br>	Author: {{post.author}} <br> 
+		<a href="/blog/details/{{post.id}}">Title: {{post.title}}</a> <br>	
+			Author: {{post.author}} <br> 
 			Text: {{post.body}}</li> <br>
 	{% endfor %}
 </ul>
