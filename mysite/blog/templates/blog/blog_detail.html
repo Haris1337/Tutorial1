@@ -8,6 +8,16 @@
 	</div>
 </div>
 
+<hr>
+{% for comment in post.comments.all %}
+    <div class="comment">
+        <div class="date">{{ comment.time_of_comment }}</div>
+        <p>{{ comment.text|linebreaks }}</p>
+    </div>
+{% empty %}
+    <p>No comments here yet :(</p>
+{% endfor %}
+
 
 
 
