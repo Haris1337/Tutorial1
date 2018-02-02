@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from .models import Post
+from .models import Post, Comments
 from django.contrib.auth.decorators import login_required
 #from .forms import CommentForm
 
@@ -38,8 +38,9 @@ def add(request):
 		return render(request, 'blog/add.html', user)
 
 #Retrieved the post objects by its id
-def blog_detail(request, title):
-	blog = Post.objects.get(id=title)
-	return render(request, 'blog/blog_detail.html', {'blog':blog})	
+def blog_detail(request, id):
+	blog = Post.objects.get(id=id)
+	comments = Comments.objects.filter(post=blog)
+	return render(request, 'blog/blog_detail.html', {'blog':blog, 'comments':comments})	
 
 
