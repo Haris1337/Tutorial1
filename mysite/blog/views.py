@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from .models import Post, Comments
 from django.contrib.auth.decorators import login_required
@@ -41,6 +41,12 @@ def add(request):
 def blog_detail(request, id):
 	blog = Post.objects.get(id=id)
 	comments = Comments.objects.filter(post=blog)
+			
 	return render(request, 'blog/blog_detail.html', {'blog':blog, 'comments':comments})	
+
+#def add_comment_to_post(request, pk):
+
+	
+	
 
 
