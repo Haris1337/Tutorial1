@@ -33,4 +33,8 @@ class Comments(models.Model):
 	post = models.ForeignKey(Post, related_name='blog_comments')
 # 	user = models.ForeignKey(User)
 
+	def __str__(self):
+		return self.comment_text
+
+
 

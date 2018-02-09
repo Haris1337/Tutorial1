@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from .models import Post, Comments
 from django.contrib.auth.decorators import login_required
-#from .forms import CommentForm
+from .forms import CommentForm
 
 #Prints the 10 first objects in the list
 def post_list(request):
@@ -41,8 +41,21 @@ def add(request):
 def blog_detail(request, id):
 	blog = Post.objects.get(id=id)
 	comments = Comments.objects.filter(post=blog)
+	if request.method == 'POST':
+	#Comment posted
+		comment_form = CommentForm(data=request.POST)
+		if comment_form.is_valid():
+			#create comment obj
+			new_comment = comment_form.save(commit=False)
+			#assign post to comment
+			new_comment.blog = blog
+			#save to db
+			new_comment.save()
+	else:
+		comment_form = CommentForm()
+	
 			
-	return render(request, 'blog/blog_detail.html', {'blog':blog, 'comments':comments})	
+	return render(request, 'blog/blog_detail.html', {'blog':blog, 'comments':comments, 'comment_form':comment_form})	
 
 #def add_comment_to_post(request, pk):
 
