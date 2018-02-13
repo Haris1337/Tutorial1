@@ -29,7 +29,7 @@ class Post(models.Model):
 
 class Comments(models.Model):
 	comment_text = models.CharField(max_length=200)
-	time_of_comment = models.DateTimeField(auto_now_add=True)
+	time_of_comment = models.DateTimeField(default=timezone.now)
 	post = models.ForeignKey(Post, related_name='blog_comments')
 # 	user = models.ForeignKey(User)
 

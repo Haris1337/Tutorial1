@@ -42,15 +42,22 @@ def blog_detail(request, id):
 	blog = Post.objects.get(id=id)
 	comments = Comments.objects.filter(post=blog)
 	if request.method == 'POST':
+		print 'request.POST', request.POST
 	#Comment posted
 		comment_form = CommentForm(data=request.POST)
+		print '1'
 		if comment_form.is_valid():
+			print '2'
 			#create comment obj
 			new_comment = comment_form.save(commit=False)
+			print '3'
 			#assign post to comment
-			new_comment.blog = blog
+			new_comment.post = blog
+			print '4'
 			#save to db
+#			new_comment.post_id=id #this works too.
 			new_comment.save()
+			print '5'
 	else:
 		comment_form = CommentForm()
 	

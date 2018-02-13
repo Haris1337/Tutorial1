@@ -6,4 +6,4 @@ class CommentForm(forms.ModelForm):
 	class Meta:
 		model = Comments
 		fields = ['comment_text',]
-#time_of_comment
+
