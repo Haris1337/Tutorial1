@@ -28,3 +28,5 @@ Named urls 	url(r'^logout/$', views.logout_view, name="logout") <-- logout is th
 3. make new file
 4. git add . / git commit -m "message of changes" / git push origin "branchname" / git checkout master / git merge / git push.
 
+15.02.2018
+Trying to defragment and redevelop the login function more similar to the method that is presented in the Django documentation fetching username=username / pw=pw. Still using the built in functions in Django.
