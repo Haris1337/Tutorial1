@@ -30,3 +30,7 @@ Named urls 	url(r'^logout/$', views.logout_view, name="logout") <-- logout is th
 
 15.02.2018
 Trying to defragment and redevelop the login function more similar to the method that is presented in the Django documentation fetching username=username / pw=pw. Still using the built in functions in Django.
+
+19.02.2018
+Function based views came before class based views. In bigger projects, there are redundant functions. Class based function allows for inheritence and removes much of the redundancy. 
+

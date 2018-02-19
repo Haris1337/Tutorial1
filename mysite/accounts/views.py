@@ -4,6 +4,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate
+from .forms import UserLoginForm
 
 
 
@@ -22,18 +23,18 @@ def signup_view(request):
 	
 	return render(request, 'accounts/signup.html', {'form':form})
 
-'''
+
 def login_view(request):
-	if request.method == 'POST':
-		form = AuthenticationForm(data=request.POST)
-		username = request.POST.get['username', ''] #post username info, MultivalueDict get method
-		password = request.POST.get['password', ''] #post password info, MultivalueDict get method
-		user = authenticate(request, username=username, password=password) #request the object with UN/PW == UN/PW
+	form = UserLoginForm(request.POST or None)
+	if form.is_valid():
+		username = form.cleaned_data.get["username"] #Form subclass, cleanes the specific form attribute.
+		password = form.cleaned_data.get["password"] #does not pass parameters. Looks up value in form.
+		user = authenticate(username=username, password=password) #request the object with UN/PW == UN/PW
 		if user is not None: #if the user exists, request the user and use imported login function.
-		login(request, user) # ^
+			login(request, user) # ^
 		return redirect('/post') #if logged in, redirect to /post
 	else:
-		return render(request, 'accounts/login.html')
+		return render(request, 'accounts/login.html', {'form':form})
 '''
 
 def login_view(request):
@@ -52,6 +53,7 @@ def login_view(request):
 		form = AuthenticationForm() #if not valid, will send to previous form and post errors
 	
 	return render(request, 'accounts/login.html', {'form':form})
+'''
 
 def logout_view(request):
 	if request.method == 'POST':

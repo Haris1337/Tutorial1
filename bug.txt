@@ -5,3 +5,6 @@ you should return to the "add" url
 
 01.2.2018
 - Cant get the title to be a link to a new template of itself. new functions def blog_detail.
+
+19.02.2018
+- name 'password' is not defined. Not sure how to fix this, as i thought it was automatically defined in the User Model. Maybe import the User model in the forms?
