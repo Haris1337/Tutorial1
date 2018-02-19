@@ -11,13 +11,14 @@ class UserLoginForm(forms.Form):
 		username = self.cleaned_data.get("username")
 		password = self.cleaned_data.get("password")
 		user = authenticate(username=username, password=password)
+		print '1'
 		if not user:
-			raise forms.ValidationErrors("user does not exist")
+			raise forms.ValidationError("user does not exist")
 
-		
+		print '2'
 		if not user.check_password(password):
 			raise forms.ValidationError("password does not match")
-
+		print '3'
 		if not user.is_active:
 			raise forms.ValidationError("account nolonger exist")
 		return super(UserLoginForm, self).clean()
