@@ -5,9 +5,9 @@ User = get_user_model()
 
 class UserLoginForm(forms.Form):
 	username = forms.CharField()
-	password.CharField(widget=forms.PasswordInput)
+	password = forms.CharField(widget=forms.PasswordInput)
 
-	def clean(self, *args, **kwargs): #*args lets u pass non-keyword variable length argument list to a function. 										  **kwargs does keyworded.
+	def clean(self): #*args lets u pass non-keyword variable length argument list to a function. 										  **kwargs does keyworded.
 		username = self.cleaned_data.get("username")
 		password = self.cleaned_data.get("password")
 		user = authenticate(username=username, password=password)
@@ -20,4 +20,4 @@ class UserLoginForm(forms.Form):
 
 		if not user.is_active:
 			raise forms.ValidationError("account nolonger exist")
-		return super(UserLoginForm, self).clean
+		return super(UserLoginForm, self).clean()
