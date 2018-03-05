@@ -34,3 +34,15 @@ Trying to defragment and redevelop the login function more similar to the method
 19.02.2018
 Function based views came before class based views. In bigger projects, there are redundant functions. Class based function allows for inheritence and removes much of the redundancy. 
 
+-- HTML --
+<head> top bar
+	- <title> = name the tab
+<body> displayed on the website
+	<h1> - <h6> = header size
+	<p> = paragraphs, automatically spaced above and below
+	<br /> = linebreak
+	<div> = kinda invisible box which you apply content to. div id= "" gives id which can be used in CSS.
+	<ul> = unorganised list
+		<li> = list
+	
+

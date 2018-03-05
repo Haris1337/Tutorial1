@@ -29,7 +29,7 @@ def login_view(request):
 	if form.is_valid():
 		username = form.cleaned_data.get("username") #Form subclass, cleanes the specific form attribute.
 		password = form.cleaned_data.get("password") #does not pass parameters. Looks up value in form.
-		user = authenticate(username=username, password=password) #request the object with UN/PW == UN/PW
+		user = authenticate(username=username, password=password) #request the object with UN/PW == UN/PW. Checks the DB for UN/PW.
 		if user is not None: #if the user exists, request the user and use imported login function.
 			login(request, user) # ^
 		return redirect('/post') #if logged in, redirect to /post
@@ -56,7 +56,7 @@ def login_view(request):
 	return render(request, 'accounts/login.html', {'form':form})
 '''
 
-def logout_view(request):
+def logout_view(request): #builtin logout for function
 	if request.method == 'POST':
 		logout(request)
 		return redirect('/post')

@@ -24,7 +24,7 @@ def add(request):
 		title = request.POST['title']
 		author = request.POST['author']
 		body = request.POST['body']
-		u = User.objects.get(id=int(author))			
+		u = User.objects.get(id=int(author))
 		post = Post(title=title, author=u, body=body)
 		post.save()
 
@@ -60,13 +60,6 @@ def blog_detail(request, id):
 			print '5'
 	else:
 		comment_form = CommentForm()
-	
-			
-	return render(request, 'blog/blog_detail.html', {'blog':blog, 'comments':comments, 'comment_form':comment_form})	
-
-#def add_comment_to_post(request, pk):
-
-	
-	
 
 
+	return render(request, 'blog/blog_detail.html', {'blog':blog, 'comments':comments, 'comment_form':comment_form})
