@@ -37,7 +37,7 @@ def add(request):
 		return render(request, 'blog/add.html', user)
 
 @login_required(login_url="/accounts/login")
-def new_post(request):
+def post_new(request):
 	form = PostForm(request.POST)
 	if form.is_valid():
 		post = form.save(commit=False)
@@ -48,6 +48,18 @@ def new_post(request):
 		form = PostForm()
 	return render (request, 'blog/edit_post.html', {'form':form})
 
+def post_edit(request, id):
+	post = get_object_or_404(Post, id=id)
+	if (request.method == 'POST'):
+		form = PostForm(request.POST, instance=post)
+		if form.is_valid():
+			post = form.save(commit=False)
+			post.author = request.user
+			post.save()
+			return redirect('/post')
+	else:
+		form = PostForm(instance=post)
+	return render (request, 'blog/edit_post.html', {'form':form})
 
 #Retrieved the post objects by its id
 def blog_detail(request, id):
