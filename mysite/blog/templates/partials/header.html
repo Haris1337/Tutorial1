@@ -14,7 +14,7 @@
 	<ul>
 		{% if user.is_authenticated %}
 		<h4> Welcome {{ user.get_username }}! </h4>
-		
+
 		<li>
 			<form class="logout-link" action="/accounts/logout/" method="post">
 				{% csrf_token %}
@@ -27,7 +27,7 @@
 		{% endif %}
 	</ul>
 </nav>
-<a href="/blog/add">Add Post</a>
-<hr>
+ <a href="{% url 'new_post' %}">New post</a>
+<!-- <a href="/blog/add">Add Post</a> -->
 
 </header>

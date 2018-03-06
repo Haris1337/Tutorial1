@@ -4,21 +4,13 @@
   <label for="title">Title</label><br />
   <input type="text" name="title" id="title" />
   <br>
-<label for= "author">Author:</label>
-<select name="author" id="author">
-	{% for user in users %}
-	<option value={{user.id}}>
-	<li>{{user.username}} </li>
-	</option>
-	{% endfor %}
 </select>
-  <br> 
+  <br>
   <label for="body">Text</label><br />
   <textarea name="body" id="body"></textarea>
   <br><br>
   <input type="submit" value="Submit" />
 </form>
 <br>
-<a href="http://127.0.0.1:8000/post">Go Back</a>
+<a href="http://127.0.0.1:8000/post">Go Back</a> 
 {% include 'partials/footer.html' %}
-

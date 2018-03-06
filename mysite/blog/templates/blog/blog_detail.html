@@ -1,9 +1,20 @@
 {% include 'partials/header.html' %}
 
+{% if request.user == post.author %}
+        <li>
+            <form class="edit-link" action="." method="post">
+                {% csrf_token %}
+                <button type="submit">Edit</button>
+            </form>
+        </li>
+
+{% endif %}
+
+
 <div class="blog_detail">
 	<div class="blog">
-		<h2>Title:{{blog.title}}</h2>
-		<p>Auhor:{{blog.author}}</p>
+		<h2>Title: {{blog.title}}</h2>
+		<p>Auhor: {{blog.author}}</p>
 		<p>Text: {{blog.body}}</p>
 	</div>
 </div>
