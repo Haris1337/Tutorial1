@@ -49,7 +49,7 @@ def post_new(request):
 	return render (request, 'blog/edit_post.html', {'form':form})
 
 def post_edit(request, id):
-	post = get_object_or_404(Post, id=id)
+	post = get_object_or_404(Post, id=id) #Post.objects.get(id=id) get_object_or_404(Post, id=id)
 	if (request.method == 'POST'):
 		form = PostForm(request.POST, instance=post)
 		if form.is_valid():

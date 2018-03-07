@@ -1,8 +1,8 @@
 {% include 'partials/header.html' %}
 
-{% if request.user != post.author %}
+{% if request.user == blog.author %}
         <li>
-            <form class="edit-link" action="{% url 'post_edit' id=post.id %}" method="post">
+            <form class="edit-link" action="{% url 'post_edit' id=blog.id %}" method="post">
                 {% csrf_token %}
                 <button type="submit">Edit</button>
             </form>
