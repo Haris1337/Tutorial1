@@ -5,7 +5,12 @@
       {% csrf_token %}
       {{ form.as_p }}
       <br>
-      <button type="submit" class="save btn btn-default">Save</button>
+
+      <!--<button type="submit" class="save btn btn-default">Save</button>-->
+      <p><input type="submit" value="Edit"></p>
+
+        <a href=""> <h4>Go back</h4></a>
 </form>
+
 
 {% include 'partials/footer.html' %}

@@ -27,7 +27,7 @@ def add(request):
 		post = Post(title=title, author=u, body=body)
 		post.save()
 
-		return redirect('/post')
+		return redirect('/')
 	else:
 		users = User.objects.all()
 		user = {
@@ -43,20 +43,21 @@ def post_new(request):
 		post = form.save(commit=False)
 		post.author = request.user
 		post.save()
-		return redirect('/post')
+		return redirect('/')
 	else:
 		form = PostForm()
 	return render (request, 'blog/edit_post.html', {'form':form})
 
 def post_edit(request, id):
-	post = get_object_or_404(Post, id=id) #Post.objects.get(id=id) get_object_or_404(Post, id=id)
+	post =  Post.objects.get(id=id) #get_object_or_404(Post, id=id)
+	print post
 	if (request.method == 'POST'):
 		form = PostForm(request.POST, instance=post)
 		if form.is_valid():
 			post = form.save(commit=False)
 			post.author = request.user
 			post.save()
-			return redirect('/post')
+			return redirect('/')
 	else:
 		form = PostForm(instance=post)
 	return render (request, 'blog/edit_post.html', {'form':form})

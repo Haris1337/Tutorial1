@@ -17,10 +17,10 @@ def signup_view(request):
 			user = form.save()
 			user.backend = 'django.contrib.auth.backends.ModelBackend' #hackerboy
 			login(request, user) #log the user in
-			return redirect ('/post') #application blog, url post.
+			return redirect ('/') #application blog, url post.
 	else:
 		form = UserCreationForm()
-	
+
 	return render(request, 'accounts/signup.html', {'form':form})
 
 
@@ -32,7 +32,7 @@ def login_view(request):
 		user = authenticate(username=username, password=password) #request the object with UN/PW == UN/PW. Checks the DB for UN/PW.
 		if user is not None: #if the user exists, request the user and use imported login function.
 			login(request, user) # ^
-		return redirect('/post') #if logged in, redirect to /post
+		return redirect('/') #if logged in, redirect to /post
 	else:
 		form = UserLoginForm()
 	return render(request, 'accounts/login.html', {'form':form})
@@ -50,20 +50,18 @@ def login_view(request):
 			#else:
 		return redirect('/post') #redirect to post
 
-	else: 
+	else:
 		form = AuthenticationForm() #if not valid, will send to previous form and post errors
-	
+
 	return render(request, 'accounts/login.html', {'form':form})
 '''
 
 def logout_view(request): #builtin logout for function
 	if request.method == 'POST':
 		logout(request)
-		return redirect('/post')
+		return redirect('/')
 	else:
 		print request.user
 		print request.method
 		print "hello get"
-		return redirect('/post')
-		
-
+		return redirect('/')

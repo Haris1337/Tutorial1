@@ -2,7 +2,7 @@
 
 {% if request.user == blog.author %}
         <li>
-            <form class="edit-link" action="{% url 'post_edit' id=blog.id %}" method="post">
+            <form class="edit-link" action="{% url 'post_edit' id=blog.id %}" method="get">
                 {% csrf_token %}
                 <button type="submit">Edit</button>
             </form>
