@@ -55,6 +55,7 @@ def post_edit(request, id):
 		form = PostForm(request.POST, instance=post)
 		if form.is_valid():
 			post = form.save(commit=False)
+			post.edited = True
 			post.author = request.user
 			post.save()
 			return redirect('/')

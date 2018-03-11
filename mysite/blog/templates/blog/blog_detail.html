@@ -4,12 +4,18 @@
         <li>
             <form class="edit-link" action="{% url 'post_edit' id=blog.id %}" method="get">
                 {% csrf_token %}
+                <br>
                 <button type="submit">Edit</button>
             </form>
         </li>
 
 {% endif %}
 
+{% if blog.edited == True %}
+  <p class="date">Edited {{ blog.updated|timesince }}</p>
+{% endif %}
+
+ <p class="date">Published {{ blog.publish }} by {{ blog.author }}</p>
 
 <div class="blog_detail">
 	<div class="blog">
@@ -22,7 +28,7 @@
 <hr>
 {% for comment in comments %}
     <div class="comment">
-        <div class="date">{{ comment.time_of_comment }}</div>
+        <div class="date">{{ comment.time_of_comment|timesince }}   ago</div>
         <p>{{ comment.comment_text }}</p> <br>
     </div>
 {% empty %}
