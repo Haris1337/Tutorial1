@@ -39,7 +39,7 @@ h2 {
 h4 {
     font-weight:normal;
     margin:30px 0 0;
-	color: #fff;
+		color: #fff;
 }
 
 #content {
@@ -67,6 +67,7 @@ p.date {
 .pagination {
     margin:40px 0;
     font-weight:bold;
+		font-family: "Times New Roman"
 }
 
 /* forms */
@@ -111,4 +112,4 @@ input[type=submit] {
     font-weight:bold;
     font-size:12px;
     color:#666;
-}solid #888
+}

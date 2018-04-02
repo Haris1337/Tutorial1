@@ -3,14 +3,27 @@ from django.contrib.auth.models import User
 from .models import Post, Comments
 from django.contrib.auth.decorators import login_required
 from .forms import CommentForm, PostForm
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-#Prints the 10 first objects in the list
+
+
 def post_list(request):
-	posts = Post.objects.all()[:10]
+	queryset_list = Post.objects.all()
+	paginator = Paginator(queryset_list, 5) #Show 5 posts per page
+
+	page = request.GET.get('page')
+	try:
+		queryset = paginator.page(page)
+	except PageNotAnInteger:
+		queryset = paginator.page(1)
+	except EmptyPage:
+		queryset = paginator.page(paginator.num_pages)
+
 
 	context = {
-		'posts':posts
+		'object_list':queryset
 	}
+
 
 	return render(request, 'blog/base2.html', context)
 
