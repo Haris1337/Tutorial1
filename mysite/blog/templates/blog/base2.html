@@ -2,7 +2,11 @@
 {% include 'partials/header.html' %}
 
 <ul>
-
+<form method="GET" action="">
+	<input type="text" name="q" placeholder="Search posts.." value={{request.GET.q}}>
+	<input type="submit" value="Search">
+</form>
+<br><br><br><br><hr>
 	{% for post in object_list %}
 	<li>
 		<a href="/blog/details/{{post.id}}">Title: {{post.title}}</a> <br>
