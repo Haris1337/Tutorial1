@@ -14,11 +14,24 @@ def post_list(request):
 	query = request.GET.get('q')
 	if query:
 		queryset_list = queryset_list.filter(
-		Q(title__icontains=query) |
-		Q(body__icontains=query)
+		Q(title__icontains=query) #|
+		#Q(body__icontains=query)
+		).distinct()
+	#Filter by body
+	query1 = request.GET.get('s')
+	if query1:
+		queryset_list = queryset_list.filter(
+		Q(body__icontains=query1)
+		).distinct()
+	#filter by publish date
+	query2 = request.GET.get('q1')
+	if query2:
+		queryset_list = queryset_list.filter(
+		Q(publish__icontains=query2)
 		).distinct()
 
-	paginator = Paginator(queryset_list, 1) #Show 5 posts per page
+
+	paginator = Paginator(queryset_list, 5) #Show 5 posts per page
 
 	page = request.GET.get('page')
 	try:
