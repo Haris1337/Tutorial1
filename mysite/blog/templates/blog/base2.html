@@ -1,11 +1,29 @@
 {% load staticfiles %}
 {% include 'partials/header.html' %}
 
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>jQuery UI Datepicker - Default functionality</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+$( function() {
+	$( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' }).bind("change",function(){
+            var minValue = $(this).val();
+            minValue = $.datepicker.parseDate("yy-mm-dd", minValue);
+            minValue.setDate(minValue.getDate()+1);
+            $("#to").datepicker( "option", "minDate", minValue );
+        })
+    });
+</script>
+
 <ul>
 <form method="GET" action="">
 	<input type="text" name="q" placeholder="Search Title.." value={{request.GET.q}}>
 	<input type="text" name="s" placeholder="Search Body.." value={{request.GET.s}}>
-	<input type="text" name="q1" placeholder="Search Date.. yyyy-mm-dd" value={{request.GET.q1}}>
+	<input type="text" id="datepicker" name="q1" placeholder="Search Date.." value={{request.GET.q1}}>
 	<input type="submit" value="Search">
 </form>
 <br><br><br><br>
