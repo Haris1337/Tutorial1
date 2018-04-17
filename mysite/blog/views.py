@@ -12,6 +12,7 @@ def post_list(request):
 	queryset_list = Post.objects.all()
 	#Request input field and filter the post_list by title contents
 	query = request.GET.get('q')
+	print "query: ", query
 	if query:
 		queryset_list = queryset_list.filter(
 		Q(title__icontains=query) #|
@@ -19,12 +20,14 @@ def post_list(request):
 		).distinct()
 	#Filter by body
 	query1 = request.GET.get('s')
+	print "query1: ", query1
 	if query1:
 		queryset_list = queryset_list.filter(
 		Q(body__icontains=query1)
 		).distinct()
 	#filter by publish date
 	query2 = request.GET.get('q1')
+	print "query2: ", query2
 	if query2:
 		queryset_list = queryset_list.filter(
 		Q(publish__icontains=query2)
@@ -45,6 +48,10 @@ def post_list(request):
 	context = {
 		'object_list':queryset
 	}
+
+	print request.GET.get('q')
+	print request.GET.get('q1')
+	print request.GET.get('s')
 
 
 	return render(request, 'blog/base2.html', context)

@@ -21,9 +21,9 @@ $( function() {
 
 <ul>
 <form method="GET" action="">
-	<input type="text" name="q" placeholder="Search Title.." value={{request.GET.q}}>
-	<input type="text" name="s" placeholder="Search Body.." value={{request.GET.s}}>
-	<input type="text" id="datepicker" name="q1" placeholder="Search Date.." value={{request.GET.q1}}>
+	<input type="text" id="title_text" name="q" placeholder="Search Title.." value='{{request.GET.q}}'>
+	<input type="text" id="body_text" name="s" placeholder="Search Body.." value='{{request.GET.s}}'>
+	<input type="text" id="datepicker" name="q1" readonly="true" placeholder="Search Date.." value='{{request.GET.q1}}'>
 	<input type="submit" value="Search">
 </form>
 <br><br><br><br>
@@ -53,4 +53,29 @@ $( function() {
         {% endif %}
     </span>
 </div>
+<!--<script src="blog/base2.html" type="text/javascript" charset="utf-8"></script-->
+<script>
+	function activatePlacesSearch() {
+		var input = document.getElementById('title_text');
+		var autocomplete = new google.maps.places.Autocomplete(input);
+
+		console.log(autocomplete);
+		var input1 = document.getElementById('body_text');
+		var autocomplete1 = new google.maps.places.Autocomplete(input1);
+
+
+
+
+}
+</script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTKAVVEc2BMBTvoV3nAlETPiReNluaU2g&libraries=places&callback=activatePlacesSearch"></script>
+<!--
+<script>
+	function activatePlacesSearch1() {
+		var input1 = document.getElementById('body_text');
+		var autocomplete1 = new google.maps.places.Autocomplete(input1);
+
+}
+</script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTKAVVEc2BMBTvoV3nAlETPiReNluaU2g&libraries=places&callback=activatePlacesSearch&callback=activatePlacesSearch1"></script>-->
 {% include 'partials/footer.html' %}
