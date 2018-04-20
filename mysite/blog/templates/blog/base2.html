@@ -21,13 +21,19 @@ $( function() {
 
 <ul>
 <form method="GET" action="">
-	<input type="text" id="title_text" name="q" placeholder="Search Title.." value='{{request.GET.q}}'>
+	<input type="text" id="title_text" name="q" placeholder="Search Title.." autocomplete="on" runat="server" value='{{request.GET.q}}'>
+	<input type="hidden" id="city2" name="city2" />
+	<input type="hidden" id="cityLat" name="cityLat" />
+	<input type="hidden" id="cityLng" name="cityLng" />
+
 	<input type="text" id="body_text" name="s" placeholder="Search Body.." value='{{request.GET.s}}'>
 	<input type="text" id="datepicker" name="q1" readonly="true" placeholder="Search Date.." value='{{request.GET.q1}}'>
 	<input type="submit" value="Search">
 </form>
+
 <br><br><br><br>
 <br><br><br><br><hr>
+
 	{% for post in object_list %}
 	<li>
 		<a href="/blog/details/{{post.id}}">Title: {{post.title}}</a> <br>
@@ -53,8 +59,50 @@ $( function() {
         {% endif %}
     </span>
 </div>
+<!--
+<script src="http://maps.googleapis.com/maps/api/js?libraries=places" type="text/javascript"></script>
+-->
+<script type="text/javascript">
+    function initialize() {
+        var input = document.getElementById('title_text');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+
+				var input2 = document.getElementById('body_text');
+				var autocomplete2 = new google.maps.places.Autocomplete(input2);
+
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            var place = autocomplete.getPlace();
+						console.log(place);
+						console.log(place.geometry.location.lat())
+						console.log(place.geometry.location.lng())
+
+            //alert("This function is working!");
+            //alert(place.name);
+           // alert(place.address_components[0].long_name);
+
+        });
+				google.maps.event.addListener(autocomplete2, 'place_changed', function () {
+						var place2 = autocomplete2.getPlace();
+						console.log(place2);
+						console.log("number 2", place2.geometry.location.lat())
+						console.log("number 2", place2.geometry.location.lng())
+
+						//alert("This function is working!");
+						//alert(place.name);
+					 // alert(place.address_components[0].long_name);
+
+				});
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTKAVVEc2BMBTvoV3nAlETPiReNluaU2g&libraries=places&callback=initialize"></script>
+
+
 <!--<script src="blog/base2.html" type="text/javascript" charset="utf-8"></script-->
+<!--
 <script>
+
 	function activatePlacesSearch() {
 		var input = document.getElementById('title_text');
 		var autocomplete = new google.maps.places.Autocomplete(input);
@@ -63,19 +111,9 @@ $( function() {
 		var input1 = document.getElementById('body_text');
 		var autocomplete1 = new google.maps.places.Autocomplete(input1);
 
-
-
-
 }
 </script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTKAVVEc2BMBTvoV3nAlETPiReNluaU2g&libraries=places&callback=activatePlacesSearch"></script>
-<!--
-<script>
-	function activatePlacesSearch1() {
-		var input1 = document.getElementById('body_text');
-		var autocomplete1 = new google.maps.places.Autocomplete(input1);
+-->
 
-}
-</script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTKAVVEc2BMBTvoV3nAlETPiReNluaU2g&libraries=places&callback=activatePlacesSearch&callback=activatePlacesSearch1"></script>-->
 {% include 'partials/footer.html' %}
