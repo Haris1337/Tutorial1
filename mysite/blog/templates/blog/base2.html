@@ -26,7 +26,11 @@ $( function() {
 	<input type="hidden" id="cityLat" name="cityLat" />
 	<input type="hidden" id="cityLng" name="cityLng" />
 
-	<input type="text" id="body_text" name="s" placeholder="Search Body.." value='{{request.GET.s}}'>
+	<input type="text" id="body_text" name="s" placeholder="Search Body.." autocomplete="on" runat="server" value='{{request.GET.s}}'>
+	<input type="hidden" id="city3" name="city3" />
+	<input type="hidden" id="cityLat1" name="cityLat1" />
+	<input type="hidden" id="cityLng1" name="cityLng1" />
+
 	<input type="text" id="datepicker" name="q1" readonly="true" placeholder="Search Date.." value='{{request.GET.q1}}'>
 	<input type="submit" value="Search">
 </form>
@@ -72,6 +76,9 @@ $( function() {
 
         google.maps.event.addListener(autocomplete, 'place_changed', function () {
             var place = autocomplete.getPlace();
+						document.getElementById('city2').value = place.name;
+						document.getElementById('cityLat').value = place.geometry.location.lat();
+						document.getElementById('cityLng').value = place.geometry.location.lng();
 						console.log(place);
 						console.log(place.geometry.location.lat())
 						console.log(place.geometry.location.lng())
@@ -83,6 +90,9 @@ $( function() {
         });
 				google.maps.event.addListener(autocomplete2, 'place_changed', function () {
 						var place2 = autocomplete2.getPlace();
+						document.getElementById('city3').value = place2.name;
+						document.getElementById('cityLat1').value = place2.geometry.location.lat();
+						document.getElementById('cityLng1').value = place2.geometry.location.lng();
 						console.log(place2);
 						console.log("number 2", place2.geometry.location.lat())
 						console.log("number 2", place2.geometry.location.lng())
